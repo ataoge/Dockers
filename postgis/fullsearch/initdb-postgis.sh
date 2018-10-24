@@ -6,7 +6,7 @@ set -e
 export PGUSER="$POSTGRES_USER"
 
 # Create the 'template_postgis' template db
-"${psql[@]}" <<- 'EOSQL'
+"${psql[@]}" <<-'EOSQL'
 CREATE DATABASE template_postgis;
 UPDATE pg_database SET datistemplate = TRUE WHERE datname = 'template_postgis';
 EOSQL
@@ -19,5 +19,8 @@ for DB in template_postgis "$POSTGRES_DB"; do
 		CREATE EXTENSION IF NOT EXISTS postgis_topology;
 		CREATE EXTENSION IF NOT EXISTS fuzzystrmatch;
 		CREATE EXTENSION IF NOT EXISTS postgis_tiger_geocoder;
+		CREATE EXTENSION zhparser;
+		CREATE TEXT SEARCH CONFIGURATION chinese (PARSER = zhparser);
+		ALTER TEXT SEARCH CONFIGURATION chinese ADD MAPPING FOR n,v,a,i,e,l WITH simple;
 EOSQL
 done
