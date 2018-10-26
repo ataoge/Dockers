@@ -1,11 +1,11 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 set -e
 
 # Perform all actions as $POSTGRES_USER
 export PGUSER="$POSTGRES_USER"
 
-echo "do Createdatabase: ${psql[@]}" 
+psql=( psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --no-password )
 # Create the 'template_postgis' template db
 "${psql[@]}" <<-'EOSQL'
 CREATE DATABASE template_postgis;
