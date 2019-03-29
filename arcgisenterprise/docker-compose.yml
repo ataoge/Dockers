@@ -1,0 +1,59 @@
+version: '2'
+  
+services:
+  server:
+    container_name: server
+    build: arcgis-server
+    image: geoceg/arcgis-server
+    ports:
+      - "6080:6080"
+      - "6443:6443"
+    volumes:
+      - "/srv/arcgis/config-store:/home/arcgis/server/usr/config-store"
+      - "/srv/arcgis/directories:/home/arcgis/server/usr/directories"
+      - "/srv/arcgis/logs:/home/arcgis/server/usr/logs"
+    networks:
+      arcgis.net:
+
+
+  portal:
+    container_name: portal
+    build: portal-for-arcgis
+    image: geoceg/portal-for-arcgis
+    ports:
+      - "7080:7080"
+      - "7443:7443"
+    volumes:
+      - /srv/arcgis/arcgisportal:/home/arcgis/portal/usr/arcgisportal
+    networks:
+      arcgis.net:
+
+    
+  web-adaptor:
+    container_name: web-adaptor
+    build: web-adaptor
+    image: ataoge/web-adaptor
+    ports:
+      - "80:80"
+      - "443:443"
+    links:
+      - "portal"
+      - "server"
+      - "datastore"
+    networks:
+      citupu.com:
+
+
+  datastore:
+    container_name: datastore
+    build: datastore
+    image: ataoge/datastore
+    ports:
+      - "2443:2443"
+    networks:
+      citupu.com:
+
+
+networks:
+  citupu.com:
+    driver: bridge

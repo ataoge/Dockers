@@ -1,0 +1,23 @@
+// ArcGISGISServerStandard_ArcGISServer_745925.prvc
+
+//Provision
+Provision ID=549C3B5B-71B1-46F7-9D7D0C12A8C53E9F
+Comment=
+
+
+// User Information
+First Name=Huang
+Last Name=Tao
+Organization=rdc
+Department=
+Email=loveht@gmail.com
+Address 1=Floor 3 East Tower No.66  Jianzhong Road.
+City=Guangzhou
+State/Province=GD
+Location Code=CN
+Location=CN
+Zip/Postal Code=510665
+Phone Number=85576938
+
+// Features and authorization numbers
+ArcGIS Server=ECP753967838
