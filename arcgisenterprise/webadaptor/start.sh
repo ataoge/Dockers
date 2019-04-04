@@ -75,8 +75,8 @@ if [ $? == 0 ]; then
     grep -q "Could not access any Portal machines" /tmp/waconfigtest
     if [ $? == 0 ]; then 
         echo "Attempting to register Portal ${PORTAL_NAME}..."
-        cd arcgis/webadapt*/java/tools
-        ./configurewebadaptor.sh -m portal -u ${AGS_USER} -p ${AGS_PASSWORD} -w https://${WA_NAME}/arcgis/webadaptor -g https://${PORTAL_NAME}:7443
+        #cd arcgis/webadapt*/java/tools
+        #./configurewebadaptor.sh -m portal -u ${AGS_USER} -p ${AGS_PASSWORD} -w https://${WA_NAME}/arcgis/webadaptor -g https://${PORTAL_NAME}:7443
     else
         echo "Portal is already registered!"
     fi
@@ -85,4 +85,4 @@ else
     echo "Could not reach Web Adaptor at ${WA_NAME}."
 fi
 
-tail -f /var/log/tomcat8/catalina.out
+#tail -f /var/log/tomcat8/catalina.out

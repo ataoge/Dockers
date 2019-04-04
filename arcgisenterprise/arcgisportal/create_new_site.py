@@ -76,11 +76,24 @@ class arcgis(object):
             }
         content_storeJSON = json.dumps(content_store)
 
+
+        #f: json
+        #file: (binary)
+        #fullname: rdc chinadci
+        #firstname: rdc
+        #lastname: chinadci
+        #email: taoh@chinadci.com
+        #username: rdcadmin
+        #password: 85576938
+        #securityQuestionIdx: 13
+        #securityQuestionAns: gis
+        #contentDir: /home/arcgis/portal/usr/arcgisportal/content
+        #userLicenseTypeId: creatorUT
         parameters = {
             "username"            : user,
             "password"            : passwd,
             "fullname"            : "Geo-CEG Docker",
-            "email"               : "admin@example.com",
+            "email"               : "taoh@chinadci.com",
             "description"         : "Administrator account created for Docker",
             "securityQuestionIdx" : 1,
             "securityQuestionAns" : "Nothing",

@@ -14,8 +14,8 @@ ln -s .ESRI.properties.*.${ESRI_VERSION} .ESRI.properties.${HOSTNAME}.${ESRI_VER
 
 # Clean out the content folder so we don't go into "upgrade" mode.
 echo "Clearing out previous data"
-cd portal/usr/arcgisportal/ && \
-  rm -rf content/* db dsdata index pgsql* sql logs/${UPPERHOST}/portal/*.l*
+#cd portal/usr/arcgisportal/ && \
+#  rm -rf content/* db dsdata index pgsql* sql logs/${UPPERHOST}/portal/*.l*
 
 # This would probably be a good place to put code to authorize a
 # license file if you have not done that already
@@ -37,13 +37,13 @@ export LOGFILE="${HOME}/portal/usr/arcgisportal/logs/${UPPERHOST}/portal/*.log"
 echo "Logfile is $LOGFILE"
 
 echo "Waiting for Portal server to start..."
-curl --retry 15 -sS --insecure "https://${HOSTNAME}:7443/arcgis/home" > /tmp/apphttp
+curl --retry 15 --retry-delay 15 -sS --insecure "https://${HOSTNAME}:7443/arcgis/home" > /tmp/apphttp
 if [ $? != 0 ]; then
     echo "ArcGIS did not start. $?"
     exit 1
 fi
 
 echo "Configuring initial site." 
-python3 create_new_site.py
+#python3 create_new_site.py
 
 exit 0
